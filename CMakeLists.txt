@@ -1,3 +1,7 @@
+
+## Following MathiasFuchs build Build MPIR come dll win64 (with GC OPtion) 
+## Utilizzo di mpir.h invece di gmp.h 
+## mpir.lib link with DLL multithread runtime
 ################################################################################
 cmake_minimum_required(VERSION 3.8)
 project(FloatTetwild)
