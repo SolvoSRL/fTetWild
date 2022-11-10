@@ -7,6 +7,15 @@ cmake_minimum_required(VERSION 3.8)
 project(FloatTetwild)
 ################################################################################
 
+## download eigen 3.4.0 and place it in the libigl/external folder
+## set the following variables in the cmake-gui:
+## (CMAKE_BUILD_TYPE RelWithDebInfo)
+## (LIBIGL_EIGEN_VERSION 3.4.0)
+## (LIBIGL_SKIP_DOWNLOAD ON)
+## (BUILD_TESTING OFF)
+
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 # Detects whether this is a top-level project
 get_directory_property(HAS_PARENT PARENT_DIRECTORY)
 if(HAS_PARENT)

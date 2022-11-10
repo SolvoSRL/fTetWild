@@ -9,7 +9,7 @@
 #pragma once
 
 #include <floattetwild/Parameters.h>
-#include <floattetwild/Logger.hpp>
+
 
 namespace floatTetWild {
 
@@ -20,4 +20,11 @@ int tetrahedralization(GEO::Mesh&       sf_mesh,
                        int              boolean_op    = -1,
                        bool             skip_simplify = false);
 
+int __declspec(dllexport) tetrahedralizationFlat(const std::vector<double>& surfaceVerts,
+                                                 const std::vector<size_t>& surfaceTris,
+                                                 Parameters                 params,
+                                                 Eigen::MatrixXd&           VO,
+                                                 Eigen::MatrixXi&           TO,
+                                                 int                        boolean_op,
+                                                 bool                       skip_simplify);
 }
