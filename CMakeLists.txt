@@ -1,6 +1,6 @@
 
-## Following MathiasFuchs build Build MPIR come dll win64 (with GC OPtion) 
-## Utilizzo di mpir.h invece di gmp.h 
+## Following MathiasFuchs build, Build MPIR as dll win64 (with GC OPtion) 
+## Use of mpir.h instead of gmp.h 
 ## mpir.lib link with DLL multithread runtime
 ################################################################################
 cmake_minimum_required(VERSION 3.8)
@@ -13,7 +13,10 @@ project(FloatTetwild)
 ## (LIBIGL_EIGEN_VERSION 3.4.0)
 ## (LIBIGL_SKIP_DOWNLOAD ON)
 ## (BUILD_TESTING OFF)
-
+set(CMAKE_BUILD_TYPE RelWithDebInfo)
+set(LIBIGL_EIGEN_VERSION 3.4.0)
+set(LIBIGL_SKIP_DOWNLOAD ON)
+set(BUILD_TESTING OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Detects whether this is a top-level project
@@ -53,7 +56,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 ################################################################################
 
 # FloatTetwild options
-option(FLOAT_TETWILD_ENABLE_TBB         "Enable TBB"                    ON)
+option(FLOAT_TETWILD_ENABLE_TBB         "Enable TBB"                    OFF)
 option(FLOAT_TETWILD_USE_FLOAT          "Use floats instead of double"  OFF)
 option(FLOAT_TETWILD_WITH_SANITIZERS    "Use sanitizers"                OFF)
 option(FLOAT_TETWILD_WITH_EXACT_ENVELOPE    "Use exact envelope"        OFF)
