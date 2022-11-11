@@ -16,8 +16,14 @@ project(FloatTetwild)
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 set(LIBIGL_EIGEN_VERSION 3.4.0)
 set(LIBIGL_SKIP_DOWNLOAD ON)
-set(BUILD_TESTING OFF)
+set(BUILD_TESTING OFF) 
+#we want build a shared library
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+## we want to submit the solution file to source control for several (good) reasons.
+            ## and we don't want cmake to fight with us about it.
+set(CMAKE_SUPPRESS_REGENERATION true)         
+set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY true) 
 
 # Detects whether this is a top-level project
 get_directory_property(HAS_PARENT PARENT_DIRECTORY)
@@ -103,7 +109,7 @@ ENDIF()
 # ENDIF()
 
 # add_library() can only be called without any source since CMake 3.11 ...
-add_library(${PROJECT_NAME} src/Logger.cpp src/external/WindingNumber.h)
+add_library(${PROJECT_NAME} SHARED src/Logger.cpp src/external/WindingNumber.h)
 
 # Public include directory for FloatTetwild
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR}/include)
@@ -163,30 +169,30 @@ endif()
 ################################################################################
 
 # Main executable
-if(FLOAT_TETWILD_TOPLEVEL_PROJECT)
-	add_executable(${PROJECT_NAME}_bin src/main.cpp)
-	target_compile_features(${PROJECT_NAME}_bin PUBLIC ${CXX14_FEATURES})
+#if(FLOAT_TETWILD_TOPLEVEL_PROJECT)
+#	add_executable(${PROJECT_NAME}_bin src/main.cpp)
+#	target_compile_features(${PROJECT_NAME}_bin PUBLIC ${CXX14_FEATURES})
+#
+#	target_link_libraries(${PROJECT_NAME}_bin
+#		PUBLIC
+#			${PROJECT_NAME}
+#			CLI11::CLI11
+#			warnings::all
+#	)
 
-	target_link_libraries(${PROJECT_NAME}_bin
-		PUBLIC
-			${PROJECT_NAME}
-			CLI11::CLI11
-			warnings::all
-	)
+#	if(TARGET igl::tetgen)
+#		target_link_libraries(${PROJECT_NAME} PUBLIC igl::tetgen)
+#		target_compile_definitions(${PROJECT_NAME} PUBLIC -DLIBIGL_WITH_TETGEN)
+#	endif()
 
-	if(TARGET igl::tetgen)
-		target_link_libraries(${PROJECT_NAME} PUBLIC igl::tetgen)
-		target_compile_definitions(${PROJECT_NAME} PUBLIC -DLIBIGL_WITH_TETGEN)
-	endif()
+#	if(FLOAT_TETWILD_WITH_SANITIZERS)
+#		add_sanitizers(${PROJECT_NAME}_bin)
+#	endif()
 
-	if(FLOAT_TETWILD_WITH_SANITIZERS)
-		add_sanitizers(${PROJECT_NAME}_bin)
-	endif()
-
-	if(NOT (${CMAKE_VERSION} VERSION_LESS "3.6.0"))
-		set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME}_bin)
-	endif()
-endif()
+#	if(NOT (${CMAKE_VERSION} VERSION_LESS "3.6.0"))
+#		set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME}_bin)
+#	endif()
+#endif()
 
 ################################################################################
 # Subdirectories
@@ -196,9 +202,9 @@ endif()
 add_subdirectory(src)
 
 # Compile extras only if this is a top-level project
-if(FLOAT_TETWILD_TOPLEVEL_PROJECT)
+#if(FLOAT_TETWILD_TOPLEVEL_PROJECT)
 	# Unit tests
-	include(CTest)
-	enable_testing()
-	add_subdirectory(tests)
-endif()
+#	include(CTest)
+#	enable_testing()
+#	#add_subdirectory(tests)
+#endif()
