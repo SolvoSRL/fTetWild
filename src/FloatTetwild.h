@@ -22,13 +22,6 @@ int tetrahedralization(GEO::Mesh&       sf_mesh,
                        bool             skip_simplify = false);
 #endif
 
-int tetrahedralization(GEO::Mesh&       sf_mesh,
-                       Parameters       params,
-                       Eigen::MatrixXd& VO,
-                       Eigen::MatrixXi& TO,
-                       int              boolean_op    = -1,
-                       bool             skip_simplify = false);
-
 // C API
 extern "C"
 {

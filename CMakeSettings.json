@@ -3,13 +3,25 @@
     {
       "name": "x64-Release",
       "generator": "Ninja",
-      "configurationType": "Release",
+      "configurationType": "RelWithDebInfo",
       "inheritEnvironments": [ "msvc_x64_x64" ],
-      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "buildRoot": "${projectDir}\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "",
-      "ctestCommandArgs": ""
+      "buildCommandArgs": "-G",
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "BUILD_TESTING",
+          "value": "True",
+          "type": "BOOL"
+        },
+        {
+          "name": "CMAKE_INSTALL_PREFIX",
+          "value": "D:/Work/VS_projects/SolvoSRL/fTetWild/build/x64-Release",
+          "type": "PATH"
+        }
+      ]
     }
   ]
 }
