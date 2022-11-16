@@ -1,0 +1,9 @@
+Build instruction for windows DLL
+
+1) Copy repo
+2) Create /build folder if missing
+3) Move in cmd in build folder
+4) in cmd: cmake -G "Visual Studio 16 2019" -A x64 ..
+-> this create the visual studio project in build folder. Change visual studio version according to your settings.
+5) Compile and build code
+6) Enjoy
