@@ -10,10 +10,9 @@
 
 #include <floattetwild/Parameters.h>
 
-
 namespace floatTetWild {
 
-    #ifndef CAPIONLY
+#ifndef CAPIONLY
 int tetrahedralization(GEO::Mesh&       sf_mesh,
                        Parameters       params,
                        Eigen::MatrixXd& VO,
@@ -37,4 +36,4 @@ extern "C"
 
     int __declspec(dllexport) __cdecl tetrahedralizationClean(void* v, void* t);
 }
-}
+}  // namespace floatTetWild
